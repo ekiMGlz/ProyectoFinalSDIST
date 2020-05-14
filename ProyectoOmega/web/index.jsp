@@ -18,6 +18,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>En la pagina!</h1>
+        <h1>¡Bienvenid@ a Chirrup!</h1>
+        
     </body>
 </html>

@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/Login.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/Unfollow.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/web/login.jsp</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/Logout.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/GetMessages.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/GetFollowing.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/PostMessage.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/SearchUsers.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/Follow.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/src/java/dbservlets/GetFollowers.java</file>
-            <file>file:/D:/Documents/SDIST/ProyectoOmega/web/index.jsp</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/Follow.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/PostMessage.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/SearchUsers.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/GetFollowers.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/Unfollow.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/GetMessages.java</file>
+            <file>file:/D:/Repos/ProyectoFinalSDIST/ProyectoOmega/src/java/dbservlets/Chirrup.java</file>
         </group>
     </open-files>
 </project-private>

@@ -72,6 +72,7 @@ public class GetFollowers extends HttpServlet {
             
         } catch (SQLException ex) {
             Logger.getLogger(GetFollowers.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("index.jsp");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GetFollowers.class.getName()).log(Level.SEVERE, null, ex);
         }

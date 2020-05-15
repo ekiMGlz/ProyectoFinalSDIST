@@ -7,11 +7,21 @@ package dbservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -32,9 +42,40 @@ public class SearchUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        try (PrintWriter out = response.getWriter()){
             
+            /* TODO output your page here. You may use following sample code. */
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            
+            HttpSession session = request.getSession();
+            String username = (String) session.getAttribute("username");
+            if(username != null){
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/MyFirstDatabase", "root", "root");
+                Statement query = con.createStatement();
+                String search_user = request.getParameter("search_user");
+                ResultSet rs = query.executeQuery("SELECT USERNAME FROM ROOT.USERS WHERE USERNAME LIKE '%" + search_user + "%'");
+                
+                JSONArray names = new JSONArray();
+                JSONObject jsonResponse = new JSONObject();
+                
+                while(rs.next()){
+                    names.add(rs.getString("USERNAME"));
+                }
+                
+                jsonResponse.put("users", names);
+                out.println(jsonResponse.toJSONString());
+                
+            }else{
+                response.sendError(401);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GetFollowers.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("index.jsp");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GetFollowers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

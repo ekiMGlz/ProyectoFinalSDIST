@@ -7,11 +7,22 @@ package dbservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -34,7 +45,27 @@ public class Follow extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
             
+            HttpSession session = request.getSession();
+            String username = (String) session.getAttribute("username");
+            if(username != null){
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/MyFirstDatabase", "root", "root");
+                Statement query = con.createStatement();
+                
+                query.executeUpdate(String.format("INSERT INTO ROOT.FOLLOWING VALUES('%s', '%s')", request.getParameter("follow_user"), username));
+                
+                // Decidir Respuesta, por ahora forward a GetFollowing
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/GetFollowing");
+                dispatcher.forward(request, response);
+            }else{
+                response.sendError(401);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Follow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Follow.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("index.jsp");
         }
     }
 

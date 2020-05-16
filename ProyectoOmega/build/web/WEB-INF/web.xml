@@ -34,7 +34,7 @@
     </servlet>
     <servlet>
         <servlet-name>SearchUsers</servlet-name>
-        <servlet-class>dbservlets.Searchusers</servlet-class>
+        <servlet-class>dbservlets.SearchUsers</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Unfollow</servlet-name>

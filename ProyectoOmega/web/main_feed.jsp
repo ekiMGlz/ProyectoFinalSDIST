@@ -6,9 +6,10 @@
 
 
 <%
+    /*
     if(request.getSession().getAttribute("username") == null){
         response.sendRedirect("index.jsp?auth_error=1");
-    }
+    }*/
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -46,12 +47,12 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
 
 
  <!-- Cirrup section -->
-  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="chirrup">
+  <div class="w3-container w3-grey w3-center w3-text-light-grey w3-padding-32" id="chirrup">
       <h2>Escribe tu chirup: </h2>
       <form action="postMessage('chirrup')">
-          <textarea id="chirrup" rows="4" cols="20">
-          </textarea>
-          <input type="submit" value="Enviar" name="post_chirrup" />
+          <textarea id="chirrup" rows="4" cols="50">
+          </textarea><br><br>
+          <input class="w3-right" style="margin-right:300px" type="submit" value="Enviar" name="post_chirrup" />
       </form>
   </div>
 
@@ -66,20 +67,25 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
   <!-- Contact section -->
   <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
     <div class="w3-content" style="max-width:600px">
-        <form action="searchUsers">
-            <input id="usrSearch" type="text" name="userSearch" value="" />
-            <input type="submit" value="Buscar" name="nameSearch" />
-        </form>
-        <div id="searchResult"></div>
       <h3 class="w3-center"><b>Mi red: </b></h3>
+      <div style="margin-left:100px" class="w3-container">
       <div class="w3-half" id="following">
           <h4>Cuentas que sigo:</h4>
       </div>
       <div class="w3-half" id="followers">
-          <h4>Mis segidores</h4>
+          <h4>Mis segidores: </h4>
       </div> 
+      </div>
     </div>
   </div>
+  
+  <div class="w3-container w3-white w3-padding-32 w3-padding-large">
+        <form style="margin-left: 50px" class="w3-left" action="searchUsers">
+            <input id="usrSearch" type="text" name="userSearch" value="" />
+            <input type="submit" value="Buscar Usuarios" name="nameSearch" />
+        </form><br>
+      <div id="searchResult"></div>
+      </div>
  
 
   <!-- Footer -->

@@ -31,17 +31,17 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
 <div class="w3-main" style="margin-left:300px">
   
  <!-- Login section -->
-  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="login">
+  <div class="w3-container w3-light-grey w3-center w3-text-dark-grey w3-padding-64" id="login">
       <h1>Inicia session</h1>
       <form action="login">
-          <input type="text" id="usr_name" value="" />
-          <input type="password" id="password" value="" />
-          <input type="submit" value="Aceptar" name="submit" />
+          <input  type="text" id="usr_name" value="" /><br><br>
+          <input type="password" id="password" value="" /><br><br>
+          <input type="submit" value="Aceptar" name="submit" /><br><br>
       </form>
   </div>
 
   <!-- Create user section -->
-  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">
+  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-64" id="about">
       <h2>Mi información: </h2>
       <form action="createUser">
           <p>Crea un nombre de usuario: </p>
@@ -49,7 +49,7 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
           <p>Elige una contraseña: </p>
           <input type="password" id="pwd1" value="" />
           <p>Repite tu contraseña: </p>
-          <input type="password" id="pwd2" value="" />
+          <input type="password" id="pwd2" value="" /> <br><br>
           <input type="submit" value="Crear mi usuario" name="submit" />
       </form>
   </div>

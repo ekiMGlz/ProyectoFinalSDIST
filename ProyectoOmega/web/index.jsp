@@ -33,10 +33,10 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
  <!-- Login section -->
   <div class="w3-container w3-light-grey w3-center w3-text-dark-grey w3-padding-64" id="login">
       <h1>Inicia session</h1>
-      <form action="login">
-          <input  type="text" id="usr_name" value="" /><br><br>
-          <input type="password" id="password" value="" /><br><br>
-          <input type="submit" value="Aceptar" name="submit" /><br><br>
+      <form action="Login" method="POST">
+          <input  type="text" name="username" value="" /><br><br>
+          <input type="password" name="pwd" value="" /><br><br>
+          <input type="submit" value="Aceptar" />
       </form>
   </div>
 
@@ -45,7 +45,7 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
       <h2>Mi información: </h2>
       <form action="createUser">
           <p>Crea un nombre de usuario: </p>
-          <input type="text" id="usr_name" value="" />
+          <input type="text" id="usr" value="" />
           <p>Elige una contraseña: </p>
           <input type="password" id="pwd1" value="" />
           <p>Repite tu contraseña: </p>
@@ -65,7 +65,7 @@ body,h1,h2,h3,h4,h5, button {font-family: "Raleway", sans-serif}
 <!-- End page content -->
 </div>
 
-<script src="js/login.js"></script>
+<script src="./js/login.js"></script>
 
 </body>
 </html>

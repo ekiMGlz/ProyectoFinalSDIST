@@ -62,7 +62,7 @@ public class GetFollowing extends HttpServlet {
                 }
                 
                 jsonResponse.put("following", names);
-                out.println(jsonResponse.toJSONString());
+                out.write(jsonResponse.toString());
                 
             }else{
                 response.sendError(401);

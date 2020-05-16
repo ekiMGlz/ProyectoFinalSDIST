@@ -54,10 +54,14 @@ public class GetMessages extends HttpServlet {
             HttpSession http_session = request.getSession();
             String username = (String) http_session.getAttribute("username");
             if(username != null){
+                
+                System.out.println("estoy buscando chirrups");
                 ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
                 connectionFactory.setTrustAllPackages(true);
                 Connection connection = connectionFactory.createConnection();
                 connection.start();
+                
+                
 
                 Session session = connection.createSession(false /*Transacter*/, Session.AUTO_ACKNOWLEDGE);
                 Destination destination = session.createQueue(username);
@@ -65,12 +69,14 @@ public class GetMessages extends HttpServlet {
                 
                 JSONObject jsonResponse = new JSONObject();
                 JSONArray chirrups = new JSONArray();
-                ObjectMessage om = (ObjectMessage) mc.receiveNoWait();
+                ObjectMessage om = (ObjectMessage) mc.receive(1000);
                 Chirrup ch;
-                JSONObject chirrup = new JSONObject();
+                System.out.println("Encontre " + om);
                 while(om != null){
+                    JSONObject chirrup = new JSONObject();
+                       
                     ch = (Chirrup) om.getObject();
-                    
+              
                     chirrup.put("author", ch.getAuthor());
                     chirrup.put("date", ch.getDate());
                     chirrup.put("message", ch.getMessage());
@@ -85,7 +91,8 @@ public class GetMessages extends HttpServlet {
                 connection.close();
                 
                 jsonResponse.put("chirrups", chirrups);
-                out.println(jsonResponse.toJSONString());
+    
+                out.write(jsonResponse.toString());
             }else{
                 response.sendError(401);
             }

@@ -30,15 +30,15 @@ function getMessages(){
             }
             
         }
-    }
+    };
     
-    ajaxRequest.open("GET", "GetMensajes", true);
+    ajaxRequest.open("GET", "GetMessages", true);
     ajaxRequest.send();
 }
 
 function searchUsers(){
     var searchTxt = document.getElementById("usrSearch").value;
-    
+    console.log("estoy dentro");
     var ajaxRequest;
     if (window.XMLHttpRequest){
         ajaxRequest=new XMLHttpRequest(); // IE7+, Firefox, Chrome, Opera, Safari
@@ -51,12 +51,14 @@ function searchUsers(){
         if (ajaxRequest.readyState===4 && ajaxRequest.status===200){
          var JSONObject = JSON.parse(ajaxRequest.responseText);
          var users = JSONObject.users;
+         console.log(users);
          for(var i in users){
              var user = document.createElement("div");
              user.className = "w3-quater";
-             user.innerHTML = "<h5>" + user[i] + "</h5>" + 
-                              "<button onClick=followUser(" + user[i] + ")> Seguir </button>";
+             user.innerHTML = "<h5>" + users[i] + "</h5>" + 
+                              "<button onClick=followUser('" + users[i] + "')> Seguir </button>";
              searchResults.appendChild(user);
+             console.log("si encontre un usuario");
             }
         }
     }
@@ -79,6 +81,7 @@ function followUser(follow_user){
         var searchResults = document.getElementById("searchResults");
         if (ajaxRequest.readyState===4 && ajaxRequest.status===200){
                 window.alert("Se agrego el usuario a tu red de contactos. Ahora podrás ver los chirrups que publíca");
+                location.reload();
         }
     }
     
@@ -99,6 +102,7 @@ function unfollow(unfollow_user){
         var searchResults = document.getElementById("searchResults");
         if (ajaxRequest.readyState===4 && ajaxRequest.status===200){
                 window.alert("Haz dejado de seguir al usuario. Ya no podrás ver sus chirrups");
+                location.reload();
         }
     }
     
@@ -110,7 +114,8 @@ function unfollow(unfollow_user){
 
 function postMessage(msg){
     var message = document.getElementById(msg);
-    if(message.value == null || message.value == "")
+    console.log(message.value);
+    if(message.value === null || message.value === "")
         window.alert("Escribe algo para tus seguidores");
     else{
         var ajaxRequest;
@@ -135,7 +140,7 @@ function postMessage(msg){
 }
 
 function getFollowing(){
-    var following = document.getElementById("following");
+    var following_div = document.getElementById("following");
     
     var ajaxRequest;
     if (window.XMLHttpRequest){
@@ -143,7 +148,6 @@ function getFollowing(){
     } else {
         ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5
     }
-        
     ajaxRequest.onreadystatechange = function(){
         if (ajaxRequest.readyState===4 && ajaxRequest.status===200){
             var JSONObject = JSON.parse(ajaxRequest.responseText);
@@ -152,8 +156,8 @@ function getFollowing(){
                 var user = document.createElement("div");
                 user.className = "w3-quater";
                 user.innerHTML = "<h5>" + following[i] + "</h5>" + 
-                              "<button onClick=unfollow(" + user[i] + ")> Dejar de seguir </button>";
-                following.appendChild(user);
+                              "<button onClick=unfollow('" + following[i] + "')> Dejar de seguir </button>";
+                following_div.appendChild(user);
             }
         }
     }
@@ -166,8 +170,7 @@ function getFollowing(){
 
 
 function getFollowers(){
-    var followers = document.getElementById("followers");
-    
+    var followers_div = document.getElementById("followers");
     var ajaxRequest;
     if (window.XMLHttpRequest){
         ajaxRequest=new XMLHttpRequest(); // IE7+, Firefox, Chrome, Opera, Safari
@@ -183,7 +186,7 @@ function getFollowers(){
                 var user = document.createElement("div");
                 user.className = "w3-quater";
                 user.innerHTML = "<h5>" + followers[i] + "</h5>" ;
-                followers.appendChild(user);
+                followers_div.appendChild(user);
             }
         }
     }

@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
                 if(rs.next() && rs.getString("PWD").equals(pwd)){
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("main_feed.jsp");
                 }else{
                     response.sendRedirect("login.jsp?auth_error=1");
                 }

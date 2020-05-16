@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
+import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
@@ -38,6 +39,8 @@ import org.json.simple.JSONObject;
 @WebServlet(name = "PostMessage", urlPatterns = {"/PostMessage"})
 public class PostMessage extends HttpServlet {
 
+
+    
     private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     
     /**
@@ -68,12 +71,15 @@ public class PostMessage extends HttpServlet {
                 connectionFactory.setTrustAllPackages(true);
                 Connection connection = connectionFactory.createConnection();
                 connection.start();
+                
+               
 
                 Session session = connection.createSession(false /*Transacter*/, Session.AUTO_ACKNOWLEDGE);
 
                
                 
                 String message = request.getParameter("message");
+                System.out.println("Message= " + message);
                 Chirrup ch = new Chirrup(username, message);
                 ObjectMessage om = session.createObjectMessage(ch);
                 

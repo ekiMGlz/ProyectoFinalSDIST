@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            System.out.println("si llegue");
             String username = request.getParameter("username");
             String pwd = request.getParameter("pwd");
             
@@ -56,12 +56,15 @@ public class Login extends HttpServlet {
                 if(rs.next() && rs.getString("PWD").equals(pwd)){
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
-                    response.sendRedirect("index.jsp");
+               
+                    System.out.println("sigo aqui");
+                    System.out.println(request.getContextPath() + "/main_feed.jsp");
+                    response.sendRedirect(request.getContextPath() + "/main_feed.jsp");
                 }else{
-                    response.sendRedirect("login.jsp?auth_error=1");
+                    response.sendRedirect("index.jsp?auth_error=1");
                 }
             }else{
-                response.sendRedirect("login.jsp?auth_error=1");
+                response.sendRedirect("index.jsp?auth_error=1");
             }
             
         } catch (SQLException ex) {

@@ -60,10 +60,11 @@ public class SearchUsers extends HttpServlet {
                 
                 while(rs.next()){
                     names.add(rs.getString("USERNAME"));
+                    System.out.println(rs.getString("USERNAME"));
                 }
                 
                 jsonResponse.put("users", names);
-                out.println(jsonResponse.toJSONString());
+                out.write(jsonResponse.toString());
                 
             }else{
                 response.sendError(401);
